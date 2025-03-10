@@ -1,0 +1,330 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-gray-900 font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans font-bold;
+  }
+}
+
+/* Quillエディタのスタイル調整 */
+.ql-container.ql-snow {
+  font-size: inherit !important;
+  font-family: inherit !important;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-color: #e5e7eb !important;
+}
+
+.ql-editor {
+  min-height: 150px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Quillエディタ内の画像サイズ */
+.quill-image-small {
+  max-width: 25%;
+  margin: 0 auto;
+  display: block;
+}
+
+.quill-image-medium {
+  max-width: 50%;
+  margin: 0 auto;
+  display: block;
+}
+
+.quill-image-large {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: #f9fafb;
+  border-color: #e5e7eb !important;
+}
+
+/* 画像挿入ボタンのカスタマイズ */
+.ql-snow .ql-toolbar button.ql-image {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4px;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.ql-snow .ql-toolbar button.ql-image:hover {
+  background-color: #f3f4f6;
+}
+
+.ql-snow .ql-toolbar button.ql-image .ql-stroke {
+  stroke: #6b7280;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ql-snow .ql-toolbar button.ql-image:hover .ql-stroke {
+  stroke: #4b5563;
+}
+
+/* ツールバーのアイコンサイズ調整 */
+.ql-snow .ql-toolbar .ql-stroke {
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* アクティブな状態のスタイル */
+.ql-snow .ql-toolbar button.ql-active,
+.ql-snow .ql-toolbar button:focus {
+  color: #f97316;
+}
+
+.ql-snow .ql-toolbar button.ql-active .ql-stroke {
+  stroke: #f97316;
+}
+
+/* ツールバーのホバー状態 */
+.ql-snow .ql-toolbar button:hover {
+  color: #f97316;
+}
+
+.ql-snow .ql-toolbar button:hover .ql-stroke {
+  stroke: #f97316;
+}
+
+/* プレビュー時のスタイル */
+.prose {
+  color: #374151;
+  line-height: 1.75;
+}
+
+.prose h1 {
+  font-size: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.prose h2 {
+  font-size: 1.25em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.prose h3 {
+  font-size: 1.125em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.prose p {
+  margin: 0.5em 0;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2.5 rounded-full font-medium transition-all shadow-warm hover:shadow-warm-lg;
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 text-white hover:bg-primary-600 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-warm p-5 hover:shadow-warm-lg transition-shadow;
+  }
+
+  .input {
+    @apply rounded-xl border-gray-200 focus:border-primary-400 focus:ring-primary-100;
+  }
+
+  .nav-link {
+    @apply flex flex-col items-center p-2 transition-all relative text-gray-400 hover:text-primary-500;
+  }
+
+  .nav-link.active {
+    @apply text-primary-500;
+  }
+
+  .nav-link.active::after {
+    @apply content-[''] absolute -bottom-1 left-1/2 w-8 h-1 bg-primary-400 rounded-full -translate-x-1/2;
+  }
+
+  /* モーダルのスタイル */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+  }
+
+  .modal-content {
+    @apply bg-white rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col;
+  }
+
+  .modal-header {
+    @apply sticky top-0 bg-white rounded-t-2xl border-b border-gray-100 p-4;
+  }
+
+  .modal-body {
+    @apply p-4 overflow-y-auto;
+  }
+
+  .modal-footer {
+    @apply sticky bottom-0 bg-white rounded-b-2xl border-t border-gray-100 p-4;
+  }
+
+  /* モーダルが開いている時の背景のスクロール防止 */
+  .modal-open {
+    @apply overflow-hidden;
+  }
+
+  /* スライドアニメーション */
+  .slide-move {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: all 0.5s ease-in-out;
+  }
+
+  .slide-enter-from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  .slide-leave-to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  .lds-roller {
+    /* change color here */
+    color: #f8b26a;
+  }
+  .lds-roller,
+  .lds-roller div,
+  .lds-roller div:after {
+    box-sizing: border-box;
+  }
+  .lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7.2px;
+    height: 7.2px;
+    border-radius: 50%;
+    background: currentColor;
+    margin: -3.6px 0 0 -3.6px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 62.62742px;
+    left: 62.62742px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 67.71281px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 70.90963px;
+    left: 48.28221px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 70.90963px;
+    left: 31.71779px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 67.71281px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 62.62742px;
+    left: 17.37258px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12.28719px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes slideIn {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
